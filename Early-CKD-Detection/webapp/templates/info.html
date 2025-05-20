@@ -1,0 +1,375 @@
+{% extends "base.html" %}
+
+{% block title %}Kidney Information{% endblock %}
+{% block subtitle %}Learn About Kidney Health{% endblock %}
+
+{% block content %}
+<section class="info-section">
+    <div class="info-nav">
+        <a href="{{ url_for('predict') }}" class="action-btn predict-btn">
+            <i class="fas fa-chart-line"></i> Go to Prediction
+        </a>
+        <a href="{{ url_for('bloodtest') }}" class="action-btn bloodtest-btn">
+            <i class="fas fa-vial"></i> Blood Test
+        </a>
+        <a href="{{ url_for('doctor_list') }}" class="action-btn doctor-btn">
+            <i class="fas fa-user-md"></i> Doctor List
+        </a>
+    </div>
+
+
+    <article class="info-card">
+        <div class="card-header">
+            <h2><i class="fas fa-info-circle"></i> What are Kidneys?</h2>
+            <img src="{{ url_for('static', filename='images/kidney-anatomy.jpg') }}" alt="Kidney Anatomy" class="card-image">
+        </div>
+        <div class="card-content">
+            <p>The kidneys are two bean-shaped organs, each about the size of a fist, located just below the rib cage on either side of the spine. They are vital organs that perform several crucial functions to keep the body healthy:</p>
+            <ul>
+                <li><i class="fas fa-check"></i> Filter waste products from the blood</li>
+                <li><i class="fas fa-check"></i> Remove excess water and electrolytes</li>
+                <li><i class="fas fa-check"></i> Help regulate blood pressure</li>
+                <li><i class="fas fa-check"></i> Produce hormones that affect other organs</li>
+                <li><i class="fas fa-check"></i> Maintain acid-base balance</li>
+            </ul>
+            <div class="info-tip">
+                <i class="fas fa-lightbulb"></i> <strong>Did you know?</strong> Your kidneys filter about 200 liters of blood every day!
+            </div>
+        </div>
+    </article>
+
+    <article class="info-card">
+        <div class="card-header">
+            <h2><i class="fas fa-heartbeat"></i> How Kidneys Work</h2>
+            <img src="{{ url_for('static', filename='images/nephron-diagram.jpg') }}" alt="Nephron Diagram" class="card-image">
+        </div>
+        <div class="card-content">
+            <p>The kidneys perform their filtering function through tiny structures called nephrons. Each kidney contains about one million nephrons.</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Filtration</h4>
+                        <p>Blood enters the kidneys through the renal artery and passes through millions of tiny filters called glomeruli.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Reabsorption</h4>
+                        <p>Useful substances like water, glucose, and amino acids are reabsorbed back into the bloodstream.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Secretion</h4>
+                        <p>Additional waste products are actively secreted from the blood into the forming urine.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Excretion</h4>
+                        <p>The final urine passes through the ureters to the bladder for storage and eventual elimination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="info-card">
+        <h2><i class="fas fa-disease"></i> Common Kidney Diseases</h2>
+        <div class="diseases-grid">
+            <div class="disease-card">
+                <div class="disease-icon"><i class="fas fa-kidneys"></i></div>
+                <h3>Chronic Kidney Disease (CKD)</h3>
+                <p>Gradual loss of kidney function over time. Often caused by diabetes or high blood pressure.</p>
+                <div class="symptoms">
+                    <h4>Symptoms:</h4>
+                    <ul>
+                        <li>Fatigue</li>
+                        <li>Swelling in legs</li>
+                        <li>Changes in urination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Acute Kidney Injury</h3>
+                <p>Sudden episode of kidney failure or damage that happens within a few hours or days.</p>
+                <div class="symptoms">
+                    <h4>Symptoms:</h4>
+                    <ul>
+                        <li>Decreased urine output</li>
+                        <li>Fluid retention</li>
+                        <li>Confusion</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-icon"><i class="fas fa-pebble"></i></div>
+                <h3>Kidney Stones</h3>
+                <p>Hard deposits of minerals and salts that form inside your kidneys.</p>
+                <div class="symptoms">
+                    <h4>Symptoms:</h4>
+                    <ul>
+                        <li>Severe pain in side and back</li>
+                        <li>Painful urination</li>
+                        <li>Pink, red or brown urine</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-icon"><i class="fas fa-virus"></i></div>
+                <h3>Kidney Infections</h3>
+                <p>A type of urinary tract infection that begins in the urethra or bladder and travels to the kidneys.</p>
+                <div class="symptoms">
+                    <h4>Symptoms:</h4>
+                    <ul>
+                        <li>Fever</li>
+                        <li>Back or side pain</li>
+                        <li>Frequent urination</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="info-card">
+        <h2><i class="fas fa-vial"></i> Important Kidney Parameters</h2>
+        <div class="parameters-grid">
+            <div class="parameter-card">
+                <h3>Creatinine</h3>
+                <div class="parameter-value">
+                    <span class="normal-range">0.6 - 1.2 mg/dL</span>
+                    <span class="gender-variation">(Men: 0.7-1.3, Women: 0.5-1.1)</span>
+                </div>
+                <p>Waste product from muscle metabolism. Higher levels may indicate kidney dysfunction.</p>
+                <div class="parameter-tip">
+                    <i class="fas fa-info-circle"></i> Levels can be affected by muscle mass and diet.
+                </div>
+            </div>
+            
+            <div class="parameter-card">
+                <h3>eGFR</h3>
+                <div class="parameter-value">
+                    <span class="normal-range">≥ 90 mL/min/1.73m²</span>
+                    <span class="gender-variation">(Varies with age)</span>
+                </div>
+                <p>Estimated Glomerular Filtration Rate measures how well kidneys filter blood.</p>
+                <div class="parameter-tip">
+                    <i class="fas fa-info-circle"></i> Below 60 for 3+ months indicates CKD.
+                </div>
+            </div>
+            
+            <div class="parameter-card">
+                <h3>Blood Urea Nitrogen (BUN)</h3>
+                <div class="parameter-value">
+                    <span class="normal-range">7 - 20 mg/dL</span>
+                </div>
+                <p>Measures nitrogen in blood from urea waste product.</p>
+                <div class="parameter-tip">
+                    <i class="fas fa-info-circle"></i> Can be affected by dehydration and high protein diet.
+                </div>
+            </div>
+            
+            <div class="parameter-card">
+                <h3>Urine Albumin</h3>
+                <div class="parameter-value">
+                    <span class="normal-range">&lt; 30 mg/g creatinine</span>
+                </div>
+                <p>Measures protein in urine (albuminuria).</p>
+                <div class="parameter-tip">
+                    <i class="fas fa-info-circle"></i> Early sign of kidney damage, especially in diabetes.
+                </div>
+            </div>
+        </div>
+        
+        <div class="parameter-table">
+            <h3>Complete Kidney Function Test Reference Ranges</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Normal Range</th>
+                        <th>Significance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Serum Creatinine</td>
+                        <td>0.6-1.2 mg/dL</td>
+                        <td>Kidney filtration marker</td>
+                    </tr>
+                    <tr>
+                        <td>BUN</td>
+                        <td>7-20 mg/dL</td>
+                        <td>Nitrogen waste product</td>
+                    </tr>
+                    <tr>
+                        <td>eGFR</td>
+                        <td>>90 mL/min/1.73m²</td>
+                        <td>Kidney function level</td>
+                    </tr>
+                    <tr>
+                        <td>Sodium (Na+)</td>
+                        <td>135-145 mmol/L</td>
+                        <td>Electrolyte balance</td>
+                    </tr>
+                    <tr>
+                        <td>Potassium (K+)</td>
+                        <td>3.5-5.0 mmol/L</td>
+                        <td>Critical for heart function</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
+    
+    <article class="info-card prevention-card">
+        <h2><i class="fas fa-shield-alt"></i> Kidney Disease Prevention</h2>
+        <div class="prevention-tips">
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-tint"></i></div>
+                <h3>Stay Hydrated</h3>
+                <p>Drink adequate water (about 2 liters daily) to help kidneys clear sodium and toxins.</p>
+            </div>
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-utensils"></i></div>
+                <h3>Eat Healthy</h3>
+                <p>Reduce sodium, processed foods, and maintain a balanced diet with fresh fruits and vegetables.</p>
+            </div>
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-heartbeat"></i></div>
+                <h3>Monitor Blood Pressure</h3>
+                <p>Keep BP below 140/90 mmHg. High BP is a leading cause of kidney damage.</p>
+            </div>
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-syringe"></i></div>
+                <h3>Control Blood Sugar</h3>
+                <p>Diabetes is the #1 cause of kidney failure. Manage your glucose levels carefully.</p>
+            </div>
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-smoking-ban"></i></div>
+                <h3>Avoid Smoking</h3>
+                <p>Smoking reduces blood flow to kidneys and worsens existing kidney disease.</p>
+            </div>
+            <div class="tip">
+                <div class="tip-icon"><i class="fas fa-pills"></i></div>
+                <h3>Use Medications Wisely</h3>
+                <p>Some OTC pain medications can harm kidneys if taken regularly.</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+<style>
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.step {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+.step-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.step-content h4 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+.diseases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.disease-card {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+.disease-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.symptoms {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+}
+.parameter-table {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+.parameter-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.parameter-table th, .parameter-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.parameter-table th {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+}
+.prevention-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.tip {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+.tip-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.card-image {
+    width: 100%;
+    border-radius: var(--border-radius);
+    margin-top: 15px;
+    max-height: 300px;
+    object-fit: cover;
+}
+.info-tip {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-tip i {
+    color: var(--primary-color);
+}
+</style>
+{% endblock %}

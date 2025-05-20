@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Book Blood Test{% endblock %}
+{% block subtitle %}Schedule Your Kidney Function Test{% endblock %}
+
+{% block content %}
+<section class="booking-section">
+    <div class="booking-header">
+        <h2><i class="fas fa-vial"></i> Book Kidney Function Tests</h2>
+        <div class="search-labs">
+            <input type="text" placeholder="Search for tests or packages...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    
+    <div class="test-categories">
+        <div class="category active" data-category="kidney">Kidney Tests</div>
+        <div class="category" data-category="full-body">Full Body Checkup</div>
+        <div class="category" data-category="diabetes">Diabetes</div>
+        <div class="category" data-category="liver">Liver</div>
+    </div>
+    
+    <div class="test-options">
+        <div class="test-card">
+            <div class="test-badge popular">Most Popular</div>
+            <h3>Basic Kidney Panel</h3>
+            <div class="test-price">₹499 <span class="original-price">₹899</span> <span class="discount">(45% OFF)</span></div>
+            <ul class="test-includes">
+                <li><i class="fas fa-check-circle"></i> Creatinine</li>
+                <li><i class="fas fa-check-circle"></i> Blood Urea Nitrogen (BUN)</li>
+                <li><i class="fas fa-check-circle"></i> Estimated GFR (eGFR)</li>
+                <li><i class="fas fa-check-circle"></i> Urine Routine Examination</li>
+            </ul>
+            <div class="test-details">
+                <div><i class="fas fa-clock"></i> Reports in 24 Hours</div>
+                <div><i class="fas fa-syringe"></i> 1 Tube Blood</div>
+            </div>
+            <button class="book-btn">
+                <i class="fas fa-calendar-plus"></i> Book Now
+            </button>
+        </div>
+        
+        <div class="test-card">
+            <div class="test-badge comprehensive">Comprehensive</div>
+            <h3>Advanced Kidney Function Test</h3>
+            <div class="test-price">₹1299 <span class="original-price">₹2199</span> <span class="discount">(41% OFF)</span></div>
+            <ul class="test-includes">
+                <li><i class="fas fa-check-circle"></i> All Basic Tests</li>
+                <li><i class="fas fa-check-circle"></i> Electrolytes (Na, K, Cl)</li>
+                <li><i class="fas fa-check-circle"></i> Microalbuminuria</li>
+                <li><i class="fas fa-check-circle"></i> Calcium & Phosphorus</li>
+                <li><i class="fas fa-check-circle"></i> Urine Protein/Creatinine Ratio</li>
+            </ul>
+            <div class="test-details">
+                <div><i class="fas fa-clock"></i> Reports in 24 Hours</div>
+                <div><i class="fas fa-syringe"></i> 2 Tubes Blood</div>
+            </div>
+            <button class="book-btn">
+                <i class="fas fa-calendar-plus"></i> Book Now
+            </button>
+        </div>
+    </div>
+
+    <div class="lab-locator">
+        <div class="locator-header">
+            <h3><i class="fas fa-map-marked-alt"></i> Find Nearby Labs</h3>
+            <div class="location-input">
+                <i class="fas fa-location-crosshairs"></i>
+                <input type="text" placeholder="Enter your location" id="locationInput">
+                <button id="detectLocation"><i class="fas fa-crosshairs"></i> Detect</button>
+            </div>
+        </div>
+        
+        <div class="labs-container">
+            <div class="lab-card">
+                <div class="lab-info">
+                    <div class="lab-name">Metropolis Healthcare</div>
+                    <div class="lab-address"><i class="fas fa-map-marker-alt"></i> 2.3 km | Sector 18, Noida</div>
+                    <div class="lab-rating">
+                        <i class="fas fa-star"></i> 4.5 (1,240 reviews)
+                        <span class="lab-timing"><i class="fas fa-clock"></i> Open until 8:00 PM</span>
+                    </div>
+                </div>
+                <div class="lab-actions">
+                    <div class="lab-price">Home Collection: ₹100</div>
+                    <button class="select-lab">Select Lab</button>
+                </div>
+            </div>
+            
+            <div class="lab-card">
+                <div class="lab-info">
+                    <div class="lab-name">Dr. Lal PathLabs</div>
+                    <div class="lab-address"><i class="fas fa-map-marker-alt"></i> 1.1 km | Sector 62, Noida</div>
+                    <div class="lab-rating">
+                        <i class="fas fa-star"></i> 4.7 (980 reviews)
+                        <span class="lab-timing"><i class="fas fa-clock"></i> Open until 9:00 PM</span>
+                    </div>
+                </div>
+                <div class="lab-actions">
+                    <div class="lab-price">Home Collection: ₹150</div>
+                    <button class="select-lab">Select Lab</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-placeholder">
+            <img src="{{ url_for('static', filename='images/map-placeholder.jpg') }}" alt="Map of nearby labs">
+            <div class="map-overlay">Interactive map will be displayed here</div>
+        </div>
+    </div>
+    
+    <div class="booking-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Book Your Test</h3>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label>Selected Test</label>
+                    <div class="selected-test">Basic Kidney Panel</div>
+                </div>
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientAge">Age</label>
+                    <input type="number" id="patientAge" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientGender">Gender</label>
+                    <select id="patientGender" required>
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDate">Preferred Date</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="timeSlot">Time Slot</label>
+                    <select id="timeSlot" required>
+                        <option value="">Select</option>
+                        <option value="morning">Morning (7AM - 11AM)</option>
+                        <option value="afternoon">Afternoon (11AM - 3PM)</option>
+                        <option value="evening">Evening (3PM - 8PM)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address for Home Collection</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+                <button type="submit" class="confirm-booking">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const modal = document.querySelector('.booking-modal');
+    const closeBtn = document.querySelector('.close-modal'); // Fixed selector
+
+    // Show modal
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.book-btn, .select-lab')) {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        }
+    });
+
+    // Hide modal
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('hidden');
+        });
+    }
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });    
+
+    // Test category switching
+    const categories = document.querySelectorAll('.category');
+    categories.forEach(cat => {
+        cat.addEventListener('click', function() {
+            categories.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            // In a real app, we would fetch tests for this category
+        });
+    });
+    
+    // Booking modal
+    const bookButtons = document.querySelectorAll('.book-btn, .select-lab');
+    const bookingModal = document.querySelector('.booking-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    bookButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            bookingModal.classList.remove('hidden');
+        });
+    });
+    
+    closeModal.addEventListener('click', function() {
+        bookingModal.classList.add('hidden');
+    });
+    
+    // Location detection
+    document.getElementById('detectLocation').addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                document.getElementById('locationInput').value = `Nearby (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
+                // In real app, we would fetch labs near these coordinates
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    
+
+    // Show modal
+    bookButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            console.log('[DEBUG] Booking button clicked:', this);  // Debug log
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        });
+    });
+
+    // Hide modal
+    closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('hidden');
+    });
+
+    // Click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+    
+    
+});
+</script>
+{% endblock %}

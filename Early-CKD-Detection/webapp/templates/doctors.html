@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Book Doctor Appointment{% endblock %}
+{% block subtitle %}Find a Nephrologist{% endblock %}
+
+{% block content %}
+<section class="booking-section">
+    <div class="search-header">
+        <h2><i class="fas fa-user-md"></i> Book a Nephrology Consultation</h2>
+        <div class="search-doctors">
+            <input type="text" placeholder="Search for doctors, specialties...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    
+    <div class="doctor-filters">
+        <div class="filter-group">
+            <label for="location">Location</label>
+            <div class="select-wrapper">
+                <select id="location">
+                    <option>Select City</option>
+                    <option>New Delhi</option>
+                    <option>Mumbai</option>
+                    <option>Bangalore</option>
+                    <option>Hyderabad</option>
+                    <option>Chennai</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label for="specialization">Specialization</label>
+            <div class="select-wrapper">
+                <select id="specialization">
+                    <option>Nephrologist</option>
+                    <option>Urologist</option>
+                    <option>General Physician</option>
+                    <option>Diabetologist</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label for="availability">Availability</label>
+            <div class="select-wrapper">
+                <select id="availability">
+                    <option>Any Time</option>
+                    <option>Today</option>
+                    <option>Tomorrow</option>
+                    <option>Next 7 Days</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label for="consultation">Consultation</label>
+            <div class="select-wrapper">
+                <select id="consultation">
+                    <option>Clinic Visit</option>
+                    <option>Video Consult</option>
+                    <option>Home Visit</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="doctors-list">
+        <div class="doctor-card">
+            <div class="doctor-image">
+                <img src="{{ url_for('static', filename='images/doctor1.jpg') }}" alt="Dr. Sharma">
+                <div class="video-consult">Video Consult Available</div>
+            </div>
+            <div class="doctor-info">
+                <h3>Dr. Rajesh Sharma</h3>
+                <div class="specialization">Senior Nephrologist</div>
+                <div class="experience">15+ years experience</div>
+                <div class="hospital"><i class="fas fa-hospital"></i> Apollo Hospitals, New Delhi</div>
+                <div class="rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7 (320 reviews)</span>
+                    </div>
+                    <div class="fees">
+                        <i class="fas fa-rupee-sign"></i> 800 Consultation Fee
+                    </div>
+                </div>
+                <div class="availability">
+                    <div class="available-today">
+                        <i class="fas fa-calendar-check"></i> Available Today
+                    </div>
+                    <div class="slots">
+                        <span class="slot">10:00 AM</span>
+                        <span class="slot">12:30 PM</span>
+                        <span class="slot">4:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="doctor-actions">
+                <button class="view-profile">View Profile</button>
+                <button class="book-appointment">Book Appointment</button>
+            </div>
+        </div>
+        
+        <div class="doctor-card">
+            <div class="doctor-image">
+                <img src="{{ url_for('static', filename='images/doctor2.jpg') }}" alt="Dr. Patel">
+                <div class="video-consult">Video Consult Available</div>
+            </div>
+            <div class="doctor-info">
+                <h3>Dr. Priya Patel</h3>
+                <div class="specialization">Renal Specialist</div>
+                <div class="experience">12+ years experience</div>
+                <div class="hospital"><i class="fas fa-hospital"></i> Fortis Hospital, Mumbai</div>
+                <div class="rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>5.0 (240 reviews)</span>
+                    </div>
+                    <div class="fees">
+                        <i class="fas fa-rupee-sign"></i> 1000 Consultation Fee
+                    </div>
+                </div>
+                <div class="availability">
+                    <div class="available-today">
+                        <i class="fas fa-calendar-check"></i> Available Tomorrow
+                    </div>
+                    <div class="slots">
+                        <span class="slot">9:30 AM</span>
+                        <span class="slot">11:00 AM</span>
+                        <span class="slot">2:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="doctor-actions">
+                <button class="view-profile">View Profile</button>
+                <button class="book-appointment">Book Appointment</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="booking-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Book Your Appointment</h3>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label>Selected Doctor</label>
+                    <div class="selected-doctor">Dr. Rajesh Sharma - Apollo Hospitals</div>
+                </div>
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientAge">Age</label>
+                    <input type="number" id="patientAge" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientGender">Gender</label>
+                    <select id="patientGender" required>
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Appointment Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="timeSlot">Time Slot</label>
+                    <select id="timeSlot" required>
+                        <option value="">Select</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="symptoms">Symptoms (Optional)</label>
+                    <textarea id="symptoms" rows="3" placeholder="Briefly describe your symptoms"></textarea>
+                </div>
+                <div class="consult-type">
+                    <div class="type-option active" data-type="clinic">
+                        <i class="fas fa-hospital"></i>
+                        <span>Clinic Visit</span>
+                    </div>
+                    <div class="type-option" data-type="video">
+                        <i class="fas fa-video"></i>
+                        <span>Video Consult</span>
+                    </div>
+                </div>
+                <button type="submit" class="confirm-booking">Confirm Appointment</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Handle doctor booking modal
+    const bookButtons = document.querySelectorAll('.book-appointment');
+    const bookingModal = document.querySelector('.booking-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    bookButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const doctorCard = this.closest('.doctor-card');
+            const doctorName = doctorCard.querySelector('h3').textContent;
+            const hospital = doctorCard.querySelector('.hospital').textContent;
+            
+            document.querySelector('.selected-doctor').textContent = 
+                `${doctorName} - ${hospital.replace('⏎', '')}`;
+            
+            bookingModal.classList.remove('hidden');
+        });
+    });
+    
+    closeModal.addEventListener('click', () => bookingModal.classList.add('hidden'));
+
+    // 2. Handle consultation type selection
+    const consultTypes = document.querySelectorAll('.type-option');
+    consultTypes.forEach(type => {
+        type.addEventListener('click', function() {
+            consultTypes.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // 3. Handle doctor filters
+    const filters = document.querySelectorAll('.doctor-filters select');
+    filters.forEach(filter => {
+        filter.addEventListener('change', function() {
+            console.log(`Filter changed: ${this.id} = ${this.value}`);
+        });
+    });
+
+    // 4. Close modal when clicking outside
+    document.addEventListener('click', (e) => {
+        if (e.target === bookingModal) {
+            bookingModal.classList.add('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

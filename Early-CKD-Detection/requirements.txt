@@ -1,0 +1,10 @@
+flask
+flask-cors
+numpy
+pymupdf
+scikit-learn
+pandas
+joblib
+PyPDF2
+flask-sqlalchemy
+werkzeug

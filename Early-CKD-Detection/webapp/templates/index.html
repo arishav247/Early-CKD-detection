@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NephroMind - CKD Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-section">
+                <i class="fas fa-stethoscope logo-icon"></i>
+                <div class="title-section">
+                    <h1>NephroMind</h1>
+                    <p>CKD Prediction</p>
+                </div>
+            </div>
+            <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+        </header>
+
+        <main>
+            <section class="input-panel">
+                <h2>Input Parameters</h2>
+                <form id="ckdForm">
+                    <div class="parameters-grid">
+                        <div class="parameter">
+                            <label for="age">Age</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="age" min="0" max="100" required>
+                                <span class="unit">years</span>
+                            </div>
+                            <span class="reference-range">Normal: 0-100 years</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="bgr">Blood Glucose (BGR)</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="bgr" min="0" required>
+                                <span class="unit">mg/dL</span>
+                            </div>
+                            <span class="reference-range">Normal: 70-100 mg/dL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="sg">Specific Gravity</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="sg" step="0.001" min="1.000" max="1.060" required>
+                                <span class="unit"></span>
+                            </div>
+                            <span class="reference-range">Normal: 1.005-1.030</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="bu">Blood Urea</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="bu" min="0" required>
+                                <span class="unit">mg/dL</span>
+                            </div>
+                            <span class="reference-range">Normal: 7-20 mg/dL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="sc">Serum Creatinine</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="sc" step="0.01" min="0" required>
+                                <span class="unit">mg/dL</span>
+                            </div>
+                            <span class="reference-range">Normal: 0.6-1.2 mg/dL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="bp">Blood Pressure</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="bp" min="0" required>
+                                <span class="unit">mmHg</span>
+                            </div>
+                            <span class="reference-range">Normal: 90-140 mmHg</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="sod">Sodium</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="sod" min="0" required>
+                                <span class="unit">mmol/L</span>
+                            </div>
+                            <span class="reference-range">Normal: 135-145 mmol/L</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="pot">Potassium</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="pot" step="0.1" min="0" required>
+                                <span class="unit">mmol/L</span>
+                            </div>
+                            <span class="reference-range">Normal: 3.5-5.0 mmol/L</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="pe">Pedal Edema</label>
+                            <select id="pe" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="hemo">Hemoglobin</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="hemo" step="0.1" min="0" required>
+                                <span class="unit">g/dL</span>
+                            </div>
+                            <span class="reference-range">Normal: 13.5-17.5 g/dL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="htn">Hypertension</label>
+                            <select id="htn" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="wbcc">WBC Count</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="wbcc" min="0" required>
+                                <span class="unit">/μL</span>
+                            </div>
+                            <span class="reference-range">Normal: 4,500-11,000/μL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="dm">Diabetes</label>
+                            <select id="dm" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="rbcc">RBC Count</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="rbcc" step="0.1" min="0" required>
+                                <span class="unit">M/μL</span>
+                            </div>
+                            <span class="reference-range">Normal: 4.3-5.9 M/μL</span>
+                        </div>
+                        
+                        <div class="parameter">
+                            <label for="ane">Anemia</label>
+                            <select id="ane" required>
+                                <option value="">Select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <label for="pdfInput" class="upload-btn">
+                            <i class="fas fa-file-pdf"></i> Upload PDF Report
+                        </label>
+                        <input type="file" id="pdfInput" accept=".pdf" hidden>
+                        <div id="fileStatus" class="file-status">Choose File · No file chosen</div>
+                        
+                        <button type="submit" class="predict-btn">
+                            <i class="fas fa-chart-line"></i> Predict CKD Risk
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="pdfReview" class="pdf-review hidden">
+                    <h3>Review Extracted Data</h3>
+                    <div id="pdfData" class="pdf-data"></div>
+                    <button id="confirmPdfBtn" class="confirm-btn">Confirm and Predict</button>
+                </div>
+            </section>
+
+            <section class="result-panel">
+                <h2>Result</h2>
+                <div class="gauge-container">
+                    <svg viewBox="0 0 200 100" class="gauge">
+                        <path class="gauge-bg" d="M20,90 A70,70 0 0,1 180,90" stroke="#eee" stroke-width="12" fill="none"/>
+                        <path id="gaugeValue" class="gauge-value" d="M20,90 A70,70 0 0,1 180,90" stroke="#3498db" stroke-width="12" fill="none" 
+                              stroke-dasharray="251" stroke-dashoffset="251"/>
+                        <line id="gaugeNeedle" x1="100" y1="90" x2="100" y2="30" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="100" cy="90" r="8" fill="#2c3e50"/>
+                    </svg>
+                    <div id="riskPercentage" class="gauge-percentage">0%</div>
+                    <div id="riskLabel" class="gauge-label low-risk">
+                        <i class="fas fa-check-circle"></i> Low Risk
+                    </div>
+                </div>
+
+                <div id="managementSection" class="management-section" style="display: none;">
+                    <h3>Management</h3>
+                    <div id="managementAdvice" class="management-advice">
+                        <!-- Management advice will be populated by JavaScript -->
+                    </div>
+                    <div class="action-buttons">
+                        <button id="printReport" class="action-btn print-btn">
+                            <i class="fas fa-print"></i> Print Recommendations
+                        </button>
+                        <button id="resetForm" class="action-btn reset-btn">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                        <button id="bookConsultation" class="action-btn consult-btn">
+                            <i class="fas fa-user-md"></i> Book Doctor Consultation
+                        </button>
+                        <button id="bookBloodTest" class="action-btn test-btn">
+                            <i class="fas fa-vial"></i> Book Blood Test
+                        </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="project-footer">
+            <div class="attribution">
+                <p>Developed by: <span class="author">Rishav Agarwal</span></p>
+                <p>BIT Mesra | Early CKD Detection</p>
+            </div>
+        </footer>
+
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+            <span>Processing...</span>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
